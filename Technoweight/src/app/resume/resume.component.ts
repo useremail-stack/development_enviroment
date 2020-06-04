@@ -7,6 +7,6 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent {
-   imgPath = "file:///C:/Users/kumarssa/Documents/MKC/training/main_project/profile_avatar.png";
+
     
 }
