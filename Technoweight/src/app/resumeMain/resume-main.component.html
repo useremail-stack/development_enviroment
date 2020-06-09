@@ -1,0 +1,75 @@
+<div class = "main">
+    <div class = "parallax-1">
+        <div class = "parallax-header-1">
+            <h1>I'M <br>SANJAY.</h1>
+            <p>FULL STACK MEAN DEVELOPER</p>           
+        </div>
+        <div class = "about-me">
+            <p>I AM, ASPIRING TO BE PROFESSIONAL FULL STACK DEVELOPER. I AM A NATURE LOVER AND LIKE WATCHING LOT OF THRILLER AND ADVENTURE MOVIES.</p>
+        </div>       
+    </div>
+
+    <div class = "parallax-container-2">
+        <div class = "parallax-2">           
+        </div>
+        <div class = "parallax-header-2">
+            <h2>01 PROFESSIONAL SKILLS</h2>
+
+            <div class="parallax-content-2 ">
+                My Knowledge Level In Software
+                <mat-grid-list cols = "10" rowHeight = "100px">
+                    <mat-grid-tile
+                        [colspan] = "3"
+                        [rowspan] = "1">
+                        HTML/CSS
+                    </mat-grid-tile>
+                    <mat-grid-tile
+                        [colspan] = "6"
+                        [rowspan] = "1">
+                        <progress value = "60" max = "100" >60%</progress>
+                    </mat-grid-tile>
+                    <mat-grid-tile
+                        [colspan] = "1"
+                        [rowspan] = "1">
+                        60%
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    </div>
+
+    <div class = "parallax-container-2 parallax-container-override-3">
+        <div class = "parallax-header-2">
+            <h2>02 PROJECTS</h2>
+
+            <div class="parallax-content-2">    
+                
+                <div class = "slidshow-container">
+                    <div class = "mySlides">   
+                        <div class = "numbertext">1 / 2</div>                     
+                        <div class = "projectSlideShow">
+                            <div class = "projectDisplay">
+                                <img src = "../../assets/aspire_WPF.jpg">
+                                <img src = "../../assets/aspire_WPF.jpg">
+                            </div>
+                        </div>                           
+                    </div> 
+
+                    <div class = "mySlides">
+                        <div class = "numbertext">2 / 2</div>
+                        <div class = "projectSlideShow"></div>
+                    </div>
+
+                    <a class = "prev" (click) = "plusSlides(-1)">&#10094;</a>
+                    <a class = "next" (click) = "plusSlides(1)">&#10095;</a>                  
+                </div>   
+                
+                <div>
+                    <span class = "dot" (click) = "currentSlide(1)"></span>
+                    <span class = "dot" (click) = "currentSlide(2)"></span>
+                </div>
+            </div>             
+
+        </div>
+    </div>
+</div>

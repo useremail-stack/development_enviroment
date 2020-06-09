@@ -31,15 +31,65 @@
 </div>
 
 <div class = "justify-content-center">
-    <div class = "main-content-block ">
+    <div class = "main-content-block">
+        
         <h1 class = "main-content-header">Key Skills</h1>
+        <img *ngIf = "isEditable" class="plus-minus-button" src = "../../assets/plusButton.png">
+             
         <div class = "main-content-header-underline"></div>
 
-        <div class = "key-skill-grid">
-            <div class = "key-skill-item">
-                
-            </div>
+        <div class = "key-skills-mat-grid">
+        <mat-grid-list cols = "5" rowHeight = "50px" >
+
+            <div *ngFor = "let keySkill of keySkills">
+                <mat-grid-tile                  
+                    [colspan] = "1"
+                    [rowspan] = "1">                   
+                    <img [src] = "keySkill.languageIcon" style = "height: 1.5em;">
+                    <input class = "edit-text-input" *ngIf = "isEditable" [(ngModel)] = "keySkill.language">
+                    <div *ngIf = "!isEditable">{{ keySkill.language }}</div>
+                </mat-grid-tile>
+
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1">
+                    <div class="confidence-level-block">
+                        <label *ngIf = "keySkill.language === 'Angular'" for = "confidence">Confidence Level: </label>
+                        <input class = "edit-text-input edit-text-input-2" *ngIf = "isEditable" type = "text" [(ngModel)] = "keySkill.confidenceLevel">
+                        <div *ngIf = "isInputError" class = "alert alert-danger">Number is invalid</div>
+                        <progress id = "confidence" [value] = "keySkill.confidenceLevel" max = "100" style="display: block; width: 100%;">{{ keySkill.confidenceLevel}}%</progress>  
+                    </div>
+                        
+                </mat-grid-tile>
+
+                <mat-grid-tile
+                    [colspan] = "1"
+                    [rowspan] = "1">
+                   
+                    Worked on &nbsp;  
+                    <input class = "edit-text-input edit-text-input-2" *ngIf = "isEditable" type = "text" [(ngModel)] = "keySkill.usedInNumberOfProjects">
+                    <span *ngIf = "!isEditable">{{ keySkill.usedInNumberOfProjects }}</span> &nbsp; Projects
+
+                </mat-grid-tile>
+
+                <mat-grid-tile
+                    [colspan] = "1"
+                    [rowspan] = "1">
+                    <input class = "edit-text-input" *ngIf = "isEditable" type = "text" [(ngModel)] = "keySkill.projectLink">
+                    <a *ngIf = "!isEditable" [href] = "keySkill.projectLink">Project link</a>
+                    <img *ngIf = "isEditable" class="plus-minus-button" (click) = "onDelete(keySkill.language)" src = "../../assets/minusButton.png">                   
+                </mat-grid-tile>
+            </div>           
+        </mat-grid-list>
+        
         </div>
     </div>
 </div>
+
+<button type = "submit" (click) = "onSave()">Save</button>
+<button (click) = "onCancel()">Cancel Save</button>
+<button (click) = "onEdit()">Edit</button>
+
+
+
 
