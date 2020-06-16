@@ -13,26 +13,49 @@
         <div class = "parallax-2">           
         </div>
         <div class = "parallax-header-2">
-            <h2>01 PROFESSIONAL SKILLS</h2>
 
-            <div class="parallax-content-2 ">
-                My Knowledge Level In Software
-                <mat-grid-list cols = "10" rowHeight = "100px">
-                    <mat-grid-tile
-                        [colspan] = "3"
-                        [rowspan] = "1">
-                        HTML/CSS
-                    </mat-grid-tile>
-                    <mat-grid-tile
-                        [colspan] = "6"
-                        [rowspan] = "1">
-                        <progress value = "60" max = "100" >60%</progress>
-                    </mat-grid-tile>
-                    <mat-grid-tile
-                        [colspan] = "1"
-                        [rowspan] = "1">
-                        60%
-                    </mat-grid-tile>
+            <div class = "parallax-header-with-edit">
+                <h2>01 PROFESSIONAL SKILLS</h2>
+               
+            </div>
+
+            <div class="parallax-content-2 " >
+                <h4 style = "margin-bottom: 30px;">My Knowledge Level In Software  <button class = "editButton" (click) = "onEdit()">&#x2702; Edit</button></h4>
+                <mat-grid-list cols = "15" rowHeight = "40px" >
+
+                    <div *ngFor = "let skill of professionalSkills" >
+                        <mat-grid-tile
+                            [colspan] = "3"
+                            [rowspan] = "1">
+
+                            <input #skillLanguage type = "text" class = "editInput" [readonly] = "!isEditable" [ngModel] = "skill.language" (ngModelChange) = "changeDetect(skill, $event, 'language')">
+                        
+                        </mat-grid-tile>
+                        <mat-grid-tile
+                            [colspan] = "6"
+                            [rowspan] = "1">
+                            <progress [value] = "skill.knowledgeLevel" max = "100">{{ skill.knowledgeLevel }}%</progress>
+                        </mat-grid-tile>
+                        <mat-grid-tile
+                            [colspan] = "2"
+                            [rowspan] = "1">
+
+                            <input #skillLevel style = "text-align: right; margin-right: 0px;" [readonly] = "!isEditable" type = "text" class = "editInput" [ngModel] = "skill.knowledgeLevel" (ngModelChange) = "changeDetect(skill, $event, 'skillLevel')">
+                            <input style = "text-align: left;" class = "editInput" readonly type = "text" value = "%">
+
+                        </mat-grid-tile>
+
+                        <mat-grid-tile
+                            [colspan] = "4"
+                            [rowspan] = "1">
+                            <!-- <img style = "height: 2rem; margin-right: 0px;" src = "../../assets/minusButton.png"> -->
+                            <div style = "position: absolute; left: 0px; ">
+                                <button class = "editButton">Delete <span class="horizontal-line-in-delete-button"></span> &#10006; </button>
+                            </div>
+                            
+                        </mat-grid-tile>
+                    </div>
+                    
                 </mat-grid-list>
             </div>
         </div>
@@ -50,6 +73,7 @@
                         <div class = "projectSlideShow">
                             <div class = "projectDisplay">
                                 <img src = "../../assets/aspire_WPF.jpg">
+                                <span style = "width: 10px; background: none;"></span>
                                 <img src = "../../assets/aspire_WPF.jpg">
                             </div>
                         </div>                           
@@ -72,4 +96,16 @@
 
         </div>
     </div>
+  
 </div>
+
+<!-- This is temporary-->
+<div style = "position: absolute; z-index: 15;">
+    <button  (click) = "onSave()">Save</button>
+    
+    <button type = "submit" (click) = "onCancel()">Cancel</button>
+</div>
+
+
+
+

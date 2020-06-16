@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ResumeComponent } from './resume/resume.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResumeMainComponent } from './resumeMain/resume-main.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResumeMainComponent } from './resumeMain/resume-main.component';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
