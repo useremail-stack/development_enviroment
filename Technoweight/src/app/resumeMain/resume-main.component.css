@@ -217,115 +217,94 @@ progress {
 }
 
 
-/*CSS property for Project works (3RD Parallax)   ---------------   CSS Property for Slide show */
-.slidshow-container {
+
+/*------------------CSS Property for Project Slider------------------- */
+/*background-color: #a4152c;*/
+.project-container {
     width: 100%;
-    position: relative;
-    margin: auto;
-    height: 300px;
-}
-
-.mySlides {
+    height: 70vh;
     
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
 }
 
-.numbertext {  
-    padding: 8px 12px;
-    position: absolute;
-    left: 0;
-    top: 0;  
-    z-index: 14;
+.project-box {
+    background-color: #1e1e26;
+    width: 350px;
+    height: 550px;
+    border-radius: 10px;
+    flex-direction: column;
+    margin: 20px 10px;
+    padding: 10px 5px;
+    box-shadow: 2px 10px 12px rgba(0, 0, 0, 0.5);
 
-    font-size: 20px;
-    font-weight: lighter;
-}
-
-.prev, .next {
-
-    /*Positioning the arrows*/
-    position: absolute;
-    top: 50%;
-    margin-top: -22px;
-    padding: 16px;
-
-    /*Font for the arrows*/
-    color: white;
-    font-weight: bold;
-    width: auto;
-    user-select: none;
-    transition: 0.6s ease;
-    cursor: pointer;
-    
-}
-
-.prev {
-    left: 0;
-}
-
-.next { 
-    right: 0;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-}
-
-.dot {
-    height: 15px;
-    width: 15px;
-    background-color: #bbb;
-    border-radius: 50%;
-
-    display: inline-block;
-    margin: 0 4px;
-
-    transition: background-color 0.6s ease;
-}
-
-.dot:active, .dot:hover {
-    background-color: #717171;
-}
-
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-@-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-
-.projectSlideShow {
-    background-color: rgba(71, 61, 61, 0.5); 
-    width: 100%; 
-    height: 300px; 
-    position:absolute; 
-    top:0; 
-}
-
-.projectDisplay {
-    display: flex; 
-    position: absolute; 
-    left: 6%; 
-    right: 6%; 
-    padding: 0px 5px; 
-    height: 100%;
-}
-
-.projectDisplay > img {
+    justify-content:center;
+    align-items: center;
     box-sizing: border-box;
-    width: 49.99%; 
-    height: 100%
 }
 
+.project-unordered-list {
+    list-style: none;
+    display: flex;
+    padding-inline-start: 0px;
+}
 
+.project-items {
+    flex-direction: row;
+}
 
+.project-header {
+    font-family: bebas kai;
+    font-weight: bold;
+    font-size: 50px;
+    letter-spacing: 2px;
+    color: #555561;
+}
+
+.project-image {
+    height: 300px;
+    max-height: 100%;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.project-description {
+    text-align: center;
+    font-family: calibri;
+    font-weight: bold;
+    font-size: 20px;
+    color: #6a6a74;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.forwardButton, .backwardButton {
+    background-color: black;
+    padding: 20px 27px;
+    border-radius: 50%;
+    text-align: center;
+    opacity: 0.6;
+}
+
+.forwardButton:hover, .backwardButton:hover{
+    opacity: 1;
+}
+
+.for-back-button-container {
+    display: flex;
+    position: absolute;
+    z-index: 14;
+    width: 90%;
+    justify-content: center;
+}
+
+.forwardButton {
+    margin-right: 15px;
+}
+
+.backwardButton {
+    margin-left: -15px;
+}

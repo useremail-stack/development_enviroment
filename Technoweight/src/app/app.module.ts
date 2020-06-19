@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { InputNumberValidatorDirective } from './shared/input-number-validator-directive'
+import { InputNumberValidatorDirective } from './shared/input-number-validator-directive';
 
 import { AppComponent } from './app.component';
 import { ResumeComponent } from './resume/resume.component';

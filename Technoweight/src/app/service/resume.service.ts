@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { ProfessionalSkills } from '../interfaces/professional-skills';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
-//test data
-import { ProfessionalSkillData } from '../interfaces/professional-skills.model';
+//test mock data
+import { ProfessionalSkillData, ProjectShowCaseData } from '../interfaces/professional-skills.model';
+import { ProjectShowCase } from '../interfaces/project-detail';
 
 
 @Injectable({ providedIn: 'root'})
@@ -11,8 +12,10 @@ export class ResumeService {
 
     
     professionalSkillListener = new BehaviorSubject<ProfessionalSkills[]>(ProfessionalSkillData);
+    projectShowCaseListener = new BehaviorSubject<ProjectShowCase[]>(ProjectShowCaseData);
 
     professionalSkills: ProfessionalSkills[] = [];
+    projectShowCase: ProjectShowCase[] = [];
 
 
     constructor() { }
@@ -34,7 +37,17 @@ export class ResumeService {
     }
 
     setDataUpdateListener() {
-        return this.professionalSkillListener.asObservable();
-       
+        return this.professionalSkillListener.asObservable();       
+    }
+
+    getProjectsData() {
+        this.projectShowCase = ProjectShowCaseData;
+        this.projectShowCaseListener.next(this.projectShowCase);   
+ 
+    }
+
+    setProjectShowCaseListener() {
+        console.log(this.projectShowCaseListener);
+        return this.projectShowCaseListener.asObservable();
     }
 }

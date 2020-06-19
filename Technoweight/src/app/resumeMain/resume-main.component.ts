@@ -1,7 +1,10 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, QueryList, ViewChildren, Renderer2 } from '@angular/core';
 import { ProfessionalSkills } from '../interfaces/professional-skills';
 import { ResumeService } from '../service/resume.service';
 import { Subscription } from 'rxjs';
+import { ProjectShowCase } from '../interfaces/project-detail';
+import * as $ from 'jquery';
+
 
 
 @Component({
@@ -22,11 +25,14 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
     slideIndex = 1;
 
     private professionalSkills : ProfessionalSkills[] = [];
+    private projectShowCase: ProjectShowCase[] = [];
+    private projectShowCase2D: ProjectShowCase[] = [];
 
     temporaryProfessionalSkills: ProfessionalSkills[] = [];
 
     isEditable = false;
     skillSubsciber: Subscription;
+    projectSubsciber: Subscription;
 
     constructor(private resumeService: ResumeService, private ref: ChangeDetectorRef) {}    
 
@@ -34,14 +40,52 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         //1. Display the slides for project display
-        this.showSlides(this.slideIndex);
+        
 
         //2. Retrieve all the skill data
         this.resumeService.getSkillsData();
         this.skillSubsciber = this.resumeService.setDataUpdateListener().subscribe(data => {
             this.professionalSkills = data;
         });
-        
+
+        this.resumeService.getProjectsData();
+        this.projectSubsciber = this.resumeService.setProjectShowCaseListener().subscribe(data => {          
+            this.projectShowCase = data;
+            this.projectShowCase2D = this.convert1Dto2D(this.projectShowCase, 2);         
+        });
+
+        //this.showSlides(this.slideIndex); 
+
+        this.projectSlider();
+    }
+
+
+    startSlider() {
+
+        /*
+        console.log(this.$sliderContainer);
+        console.log(this.$silderBox);
+        console.log(this.$slidereList);
+ 
+        //this.interval = setInterval(function() {
+            this.$silderBox.animate({'margin-left': '-='+this.width}, this.animationSpeed, function() {
+                this.currentSlide++;
+                if(this.currentSlide === (this.$slidereList.length / 3)) {
+                    this.currentSlide = 1;
+                    this.$silderBox.css('margin-left', 0);
+                }
+            });
+        //}, this.pause);
+            */
+
+    }
+
+    convert1Dto2D(array, elementsPerArray) {
+        var newArray = [];
+        while(array.length) newArray.push(array.splice(0, elementsPerArray));
+
+
+        return newArray;
     }
 
 
@@ -145,44 +189,57 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.skillSubsciber.unsubscribe();
+        this.projectSubsciber.unsubscribe();
     }
 
     //------------PROJECTS SECTION STARTS HERE---------------------------------
 
-    //Shows the slide show for Project showcase
-    showSlides(slideNumber) {
-        var i;
 
-        //Retrieve the control of element
-        var slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
-        var dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+    projectSlider() {
+        $(document).ready(function() {
 
-        //Checking the overflow condition
-        if( slideNumber > slides.length) {this.slideIndex = 1;}
-        if(slideNumber < 1) {this.slideIndex = slides.length - 1; }
+            var width;
+            var animationSpeed = 1000;
+            var currentSlide = 1;
 
-        //Initialization of element
-        for(i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
+            var $sliderContainer;
+            var $silderBox;
+            var $slidereList;
+            var $forwardButton =  $('.forwardButton');
+            var $backwardButton =  $('.backwardButton');
 
-        for(i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
 
-        //making  to required slide
-        slides[this.slideIndex - 1].style.display = "block";
-        dots[this.slideIndex - 1].className += " active";
-    }
+            $sliderContainer = $('.project-container');
+            $silderBox = $sliderContainer.find('.project-unordered-list');
+            $slidereList = $silderBox.find('.project-items');
 
-    //Moving to next slide
-    plusSlides(slideIncrement) {
-        this.showSlides(this.slideIndex += slideIncrement);
-    }
+            width = $sliderContainer.width();
 
-    //Jumping to required slide
-    currentSlide(slideNumber) {
-        this.showSlides(this.slideIndex = slideNumber);
+            //Event when forward button is clicked
+            $forwardButton.click(function() {
+                
+                currentSlide++;
+
+                if(currentSlide > ($slidereList.length / 3)) {
+                    $silderBox.animate({'margin-left': '0px'}, animationSpeed, function() {
+                        currentSlide = 1;
+                    })
+                }
+                else {
+                    $silderBox.animate({'margin-left': '-='+width}, animationSpeed);
+                }
+                
+            });
+
+            //Event when backward button is clicked
+            $backwardButton.click(function() {
+                if(currentSlide > 1) {
+                    $silderBox.animate({'margin-left': '+='+width}, animationSpeed, function() {
+                        currentSlide--;
+                    });
+                }
+            })
+        });
     }
 
 }
