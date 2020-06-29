@@ -1,5 +1,6 @@
+/*width: 1080px;    -------> if some issue*/
 .main-page {
-    width: 1080px;
+    width: 100%;
     height: auto;
 }
 
@@ -41,6 +42,11 @@
 .editButton:hover {
     background-color: rgba(128, 41, 41, 0.8);
     /*rgba(24, 23, 23, 0.8)*/
+}
+
+.edit-container {
+    display: flex;
+    justify-content: center;
 }
 
 .horizontal-line-in-delete-button {
@@ -217,7 +223,7 @@ progress {
 }
 
 
-
+/*----------------CSS PROPERTY FOR 3RD PARALLAX-----------------------*/
 /*------------------CSS Property for Project Slider------------------- */
 /*background-color: #a4152c;*/
 .project-container {
@@ -287,6 +293,7 @@ progress {
     border-radius: 50%;
     text-align: center;
     opacity: 0.6;
+    cursor: pointer;
 }
 
 .forwardButton:hover, .backwardButton:hover{
@@ -308,3 +315,202 @@ progress {
 .backwardButton {
     margin-left: -15px;
 }
+
+.project-box > .project-delete-button-position {
+    z-index: 13;
+    margin-top: -34vh;
+
+}
+
+.project-delete-button-position > button {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5vh 5vh;
+    border-radius: 50%;
+    font-size: 10vh;
+}
+
+/*-----------------CSS PROPERTY FOR 4TH PARALLAX-------------------*/
+
+.parallax-container-override-4::after { 
+    height: 200vh;
+    width: 100%;  
+    content: "";
+    float: left;
+    background: linear-gradient(rgba(51, 59, 80, 0.6), rgba(51, 59, 80, 0.6)), url("../../assets/experience-journey.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;        
+    z-index: 1;
+    
+
+}
+
+.parallax-container-override-4 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.parallax-box{
+
+    position: absolute;
+    z-index: 100;  
+    margin-top: 20vh;
+}
+
+.parallax-box > h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: bolder;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+.parallax-content-4 {
+    color: white;
+    font-size: 1rem;
+    z-index: 100;
+}
+
+
+/*-----------CSS Property for Timeline Badge--------------*/
+
+.timeline {
+    list-style-type: none;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    background-color: rgb(24, 42, 51);
+    width: 5px;
+    height: 100%;
+
+    display: inline-block;
+
+    position: absolute;
+    left: 50%;
+    margin-left: 1.5%;
+    z-index: 100;
+}
+
+.timeline > li {
+    display: flex;
+    margin: 20px 0;
+    padding-left: 20px;
+    margin-bottom: 50px;;
+}
+
+.timeline > li::before {
+    content: "";
+    border: 5px solid rgb(45, 166, 214);
+    background-color: white;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 50%;
+
+    margin-left: -0.5%;
+    z-index: 400;
+}
+
+
+.timeline > li::after {
+    content: "";
+    margin-bottom: 20px;
+}
+
+
+.timeline > li > .timeline-panel {
+    float: left;
+    border-radius: 10px;
+    text-align: right;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+    margin-left: -55%;
+    width: 100%;
+}
+
+
+.timeline > li > .timeline-inverted {
+
+    position: relative;
+    left: 65.5%;
+    box-shadow: 5px 10px 30px rgba(0,0,0,0.8);
+    border-radius: 10px;
+    margin-left: -55%;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 70%;
+
+}
+
+.timeline > li.add-timeline::before {
+    content: "\0002B";
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    font-size: 5em;
+    font-weight: lighter;
+    color: rgb(45, 166, 214);
+}
+
+.timeline-inverted-editInput {
+    text-align: left;
+    width: 100%;
+}
+
+.add-timeline-button {
+    border: none;
+    outline: none;
+    background: none; 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px;  
+    z-index: 400; 
+    margin-left: 18px; 
+    margin-right: -65px;
+}
+
+
+
+/*
+.journey-ordered-list {
+    list-style-type: none;
+}
+
+.journey-time-line-list {
+    position: relative;
+    margin: 0;
+    padding-bottom: 1em;
+    padding-left: 20px;
+}
+
+.journey-time-line-list::before {
+    content: " ";
+    background-color: #c00;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 6px;
+    width: 3px;
+}
+
+.journey-time-line-list::after {
+    content: "";
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+}
+*/

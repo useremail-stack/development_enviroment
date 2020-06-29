@@ -4,6 +4,7 @@ import { ResumeService } from '../service/resume.service';
 import { Subscription } from 'rxjs';
 import { ProjectShowCase } from '../interfaces/project-detail';
 import * as $ from 'jquery';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 
@@ -21,6 +22,9 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
 
     @ViewChildren('skillLevel')
     skillLevel: QueryList<ElementRef>;
+
+    @ViewChild('additionalSkill')
+    additionalSkill: ElementRef;
     
     slideIndex = 1;
 
@@ -34,7 +38,9 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
     skillSubsciber: Subscription;
     projectSubsciber: Subscription;
 
-    constructor(private resumeService: ResumeService, private ref: ChangeDetectorRef) {}    
+    experienceForm: FormGroup;
+
+    constructor(private resumeService: ResumeService, private ref: ChangeDetectorRef, private render2: Renderer2) {}    
 
     
 
@@ -50,13 +56,19 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
 
         this.resumeService.getProjectsData();
         this.projectSubsciber = this.resumeService.setProjectShowCaseListener().subscribe(data => {          
-            this.projectShowCase = data;
-            this.projectShowCase2D = this.convert1Dto2D(this.projectShowCase, 2);         
+            this.projectShowCase = data;      
         });
 
         //this.showSlides(this.slideIndex); 
 
         this.projectSlider();
+
+        this.experienceForm = new FormGroup({
+            'eventName': new FormControl(null),
+            'eventYear': new FormControl(null),
+            'eventLocation': new FormControl(null),
+            'eventDescription': new FormControl(null)
+        });
     }
 
 
@@ -187,6 +199,8 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
     }
 
 
+
+
     ngOnDestroy() {
         this.skillSubsciber.unsubscribe();
         this.projectSubsciber.unsubscribe();
@@ -240,6 +254,19 @@ export class ResumeMainComponent implements OnInit, OnDestroy {
                 }
             })
         });
+    }
+
+    onExperienceSubmit() {
+        console.log("in experience submit");
+
+        
+
+        if(!this.experienceForm.invalid) {
+
+            this.resumeService.saveExperienceData(this.experienceForm);
+
+            this.experienceForm.reset();
+        }
     }
 
 }

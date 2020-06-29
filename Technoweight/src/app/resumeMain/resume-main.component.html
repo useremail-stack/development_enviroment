@@ -19,16 +19,23 @@
                
             </div>
 
-            <div class="parallax-content-2 " >
-                <h4 style = "margin-bottom: 30px;">My Knowledge Level In Software  <button class = "editButton" (click) = "onEdit()">&#x2702; Edit</button></h4>
-                <mat-grid-list cols = "15" rowHeight = "40px" >
+            <div class="parallax-content-2 " >              
+                <h4 style = "margin-bottom: 30px;">My Knowledge Level In Software</h4>
+                <div class = "edit-container">
+                    <button class = "editButton" (click) = "onAdd()">Add</button>
+                    <button class = "editButton" (click) = "onEdit()">Edit</button>
+                    <button class = "editButton" (click) = "onCancel()">Cancel</button>
+                    <button class = "editButton" (click) = "onSave()">Save</button>
+                </div>
 
-                    <div *ngFor = "let skill of professionalSkills" >
+                <mat-grid-list cols = "15" rowHeight = "40px" >
+<!--(ngModelChange) = "changeDetect(skill, $event, 'language')"-->
+                    <div #additionalSkill *ngFor = "let skill of professionalSkills" >
                         <mat-grid-tile
                             [colspan] = "3"
                             [rowspan] = "1">
 
-                            <input #skillLanguage type = "text" class = "editInput" [readonly] = "!isEditable" [ngModel] = "skill.language" (ngModelChange) = "changeDetect(skill, $event, 'language')">
+                            <input #skillLanguage type = "text" class = "editInput" [readonly] = "!isEditable" [(ngModel)] = "skill.language" placeholder="language">
                         
                         </mat-grid-tile>
                         <mat-grid-tile
@@ -40,7 +47,7 @@
                             [colspan] = "2"
                             [rowspan] = "1">
 
-                            <input #skillLevel style = "text-align: right; margin-right: 0px;" [readonly] = "!isEditable" type = "text" class = "editInput" [ngModel] = "skill.knowledgeLevel" (ngModelChange) = "changeDetect(skill, $event, 'skillLevel')">
+                            <input #skillLevel style = "text-align: right; margin-right: 0px;" [readonly] = "!isEditable" type = "text" class = "editInput" [(ngModel)] = "skill.knowledgeLevel">
                             <input style = "text-align: left;" class = "editInput" readonly type = "text" value = "%">
 
                         </mat-grid-tile>
@@ -66,20 +73,27 @@
         <div class = "parallax-header-2">
             <h2>02 PROJECTS</h2>
 
+            <div class = "edit-container">
+                <div class = "editButton">Edit</div>
+                <div class = "editButton">Cancel</div>
+                <div class = "editButton">Save</div>
+            </div>
+            
             <div class = "container project-container">
                 <div class = "container for-back-button-container">
-                    <div class = "backwardButton"><</div>
+                    <div class = "backwardButton">&lt;</div>
                     <span style = "flex: 1 auto;"></span>
-                    <div class = "forwardButton">></div>
+                    <div class = "forwardButton">&gt;</div>
                 </div>
                 
-                <ul class = "project-unordered-list">
-                    <li class = "project-items">
+                <ul class = "project-unordered-list">                  
+                    <li class = "project-items">                        
                         <div class = "project-box">
                             <p class = "project-header">Header</p>
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
-                            <p class = "project-description">This is the project content</p>
+                            <p class = "project-description">This is the project content</p>                                                  
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -87,6 +101,7 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project content</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -94,6 +109,7 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project contentsdbiudbsicudiv diunvidunvidfjsvni sdnfoifsdn</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -101,6 +117,7 @@
                             <img src = "../../assets/home.svg" class = "project-image">
                             <p class = "project-description">This is the project content</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -108,6 +125,7 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project content</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -115,6 +133,7 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project contentsdbiudbsicudiv diunvidunvidfjsvni sdnfoifsdn</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
 
                     <li class = "project-items">
@@ -123,6 +142,7 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project content</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -130,6 +150,7 @@
                             <img src = "../../assets/home.svg" class = "project-image">
                             <p class = "project-description">This is the project content</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                     <li class = "project-items">
                         <div class = "project-box">
@@ -137,22 +158,94 @@
                             <img src = "../../assets/aspire_WPF.jpg" class = "project-image">
                             <p class = "project-description">This is the project contentsdbiudbsicudiv diunvidunvidfjsvni sdnfoifsdn</p>
                         </div>
+                        <button class = "editButton">Delete<span class = "horizontal-line-in-delete-button"></span>&#10006;</button>
                     </li>
                 </ul>
             </div>
-                
-
         </div>
     </div>
+
+    <!-- PARALLAX 4 BEGINS FROM HERE -->
+    <div id="para" style = "height: 100vh; width: 100%;">
+        <div class = "parallax-container-override-4">
+            <div class = "parallax-box">
+                <h1 class = "test">03 EXPERIENCE JOURNEY</h1>
+                <div class = "parallax-content-4">
+
+                    <!--REMOVE THE BELOW TIMELINE AND USE A NORMAL TIME LINE-->
+                    <ul class = "timeline">
+                        <li> 
+                            <div class = "timeline-panel">
+                                <h2>High School</h2>
+                                <p>2000 - 2012</p>
+                            </div>
+                            <div class = "timeline-inverted">
+                                <h2>Air Force School</h2>
+                                <p>This is the happy time where I pent my childhood, from LKG to 10th. In 10th standard i had scored 72.2%. </p>
+                            </div>                             
+                        </li>
+
+                        <li> 
+                            <div class = "timeline-panel">
+                                <h2>Pre University College</h2>
+                                <p>2012 - 2014</p>
+                            </div>
+                            <div class = "timeline-inverted">
+                                <h2>St Joseph Composite Pre University College</h2>
+                                <p>Stream: PCME (Physics, Chemistry, Mathematics, Electricals)<br>Score: 70.89%</p>
+                            </div>                             
+                        </li>
+
+                        <li> 
+                            <div class = "timeline-panel">
+                                <h2>Batchelor of Engineering</h2>
+                                <p>2014 - 2018</p>
+                            </div>
+                            <div class = "timeline-inverted">
+                                <h2>St Joseph Composite Pre University College</h2>
+                                <p>Stream: PCME (Physics, Chemistry, Mathematics, Electricals)<br>Score: 70.89%</p>
+                            </div>                             
+                        </li>
+
+                        <li> 
+                            <div class = "timeline-panel">
+                                <h2>Pre University College</h2>
+                                <p>2012 - 2014</p>
+                            </div>
+                            <div class = "timeline-inverted">
+                                <h2>St Joseph Composite Pre University College</h2>
+                                <p>Stream: PCME (Physics, Chemistry, Mathematics, Electricals)<br>Score: 70.89%</p>
+                            </div>                             
+                        </li>
+                        
+
+                        <li *ngIf = "false">
+                        </li>
+
+                        <li *ngIf = "true" class = "add-timeline" [formGroup] = "experienceForm" >  
+                            <div class = "timeline-panel">
+                                <h2><input class = "editInput" formControlName = "eventName" placeholder="Degree/Achievements/Events"></h2>
+                                <p><input class = "editInput" formControlName = "eventYear" placeholder="Year of event"></p>
+                            </div>
+                            <button class = "add-timeline-button" type = "submit" (click) = "onExperienceSubmit()"></button>
+                            <div class = "timeline-inverted">
+                                <h2><input class = "editInput timeline-inverted-editInput" formControlName = "eventLocation" placeholder="Where did event occur"></h2>
+                                <p><input class = "editInput timeline-inverted-editInput" formControlName = "eventDescription" placeholder="Description of event"></p>
+                            </div>                                                          
+                        </li>
+                    </ul>
+                    
+                </div>            
+            </div>    
+        </div>
+    </div>
+    
+
   
 </div>
 
-<!-- This is temporary-->
-<div style = "position: absolute; z-index: 15;">
-    <button  (click) = "onSave()">Save</button>
-    
-    <button type = "submit" (click) = "onCancel()">Cancel</button>
-</div>
+
+
 
 
 
